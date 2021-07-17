@@ -29,89 +29,82 @@ function playRound(computerSelection, playerSelection) {
         playerWin++;
         winner = 'player'
         return winner
+    }
 
-
-        if (playerSelection == 'paper' && computerSelection == 'rock') {
-            // console.log('you win, paper beats rock!');
-            playerWin++;
-            winner = 'player'
-            return winner
-
-
-
-            if (playerSelection == 'scissors' && computerSelection == 'paper') {
-                //   console.log('you win, scissors beats paper!');
-                playerWin++;
-                winner = 'player'
-                return winner
-
-
-            }
-        }
+    else if (playerSelection == 'paper' && computerSelection == 'rock') {
+        // console.log('you win, paper beats rock!');
+        playerWin++;
+        winner = 'player'
+        return winner
 
     }
+
+    else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+        //   console.log('you win, scissors beats paper!');
+        playerWin++;
+        winner = 'player'
+        return winner
+    }
+
+
     //winner = 'player'
     //computer wins 
-    if (playerSelection == 'scissors' && computerSelection == 'rock') {
+    else if (playerSelection == 'scissors' && computerSelection == 'rock') {
         //  console.log('you lost, rock beat scissors!');
+        computerWin++;
+        winner = 'computer'
+        return winner
+    }
+
+
+    if (playerSelection == 'rock' && computerSelection == 'paper') {
+        //  console.log('you lost, paper beat Rock!');
+        winner = 'computer'
+        computerWin++;
+        return winner
+
+    }
+    if (playerSelection == 'paper' && computerSelection == 'scissors') {
+        //   console.log('you lost, Scissor beat Paper!');
         computerWin++;
         winner = 'computer'
         return winner
 
 
-
-        if (playerSelection == 'rock' && computerSelection == 'paper') {
-            //  console.log('you lost, paper beat Rock!');
-            winner = 'computer'
-            computerWin++;
-            return winner
-
-
-            if (playerSelection == 'paper' && computerSelection == 'scissors') {
-                //   console.log('you lost, Scissor beat Paper!');
-                computerWin++;
-                winner = 'computer'
-                return winner
-
-
-            }
-
-
-        }
-
     }
+
+
     //winner = 'computer'
-    // tie between player and
-    if (playerSelection == 'rock' && computerSelection == 'rock') {
+
+    // tie between player and computer
+    else if (playerSelection == 'rock' && computerSelection == 'rock') {
         //console.log('tie game');
         ties++;
         winner = 'tie game'
         return winner
 
-
-
-        if (playerSelection == 'paper' && computerSelection == 'paper') {
-            // console.log('tie game');
-            ties++;
-            winner = 'tie game'
-            return winner
-
-
-
-            if (playerSelection == 'scissors' && computerSelection == 'scissors') {
-                // console.log('tie game');
-                ties++;
-                winner = 'tie game'
-                return winner
-
-
-            }
-
-        }
     }
+
+    if (playerSelection == 'paper' && computerSelection == 'paper') {
+        // console.log('tie game');
+        ties++;
+        winner = 'tie game'
+        return winner
+
+    }
+
+    if (playerSelection == 'scissors' && computerSelection == 'scissors') {
+        // console.log('tie game');
+        ties++;
+        winner = 'tie game'
+        return winner
+
+
+    }
+
     //winner = 'tie game'
     //return winner;
-    
+
 
 }
 function game() {
@@ -153,17 +146,17 @@ function game() {
         }*/
     }
     //final message
-    if (playerWin > computerWin){
+    if (playerWin > computerWin)
         console.log(`congrats player won! player won: ${playerWin}, computer won: ${computerWin}. There were ${ties} ties`)
-    }
-    else if (computerWin > playerWin){
+
+    else if (computerWin > playerWin)
         console.log(`computer won! player won: ${playerWin}, computer won: ${computerWin}. There were ${ties} ties`)
-        
-    }
-    else if (computerWin == playerWin){
+
+
+    else if (computerWin == playerWin)
         console.log(`computer and player tied! player won: ${playerWin}, computer won: ${computerWin}. There were ${ties} ties`)
 
-    }
+
 
     /*console.log(`the winner is ${winner}, the loser is ${loser}, there were ${ties} ties`);
     if (winner == 'computer')
