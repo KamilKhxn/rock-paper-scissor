@@ -23,6 +23,8 @@ function computerPlay() {
 }
 
 function playRound(computerSelection, playerSelection) {
+
+    
     //player wins if statement
     if (playerSelection == 'rock' && computerSelection == 'scissors') {
         //console.log('you win, rock beats scissors!');
@@ -109,16 +111,16 @@ function playRound(computerSelection, playerSelection) {
 }
 function game() {
     //play 5 rounds of the game
-    //let winner = 'n/a';
-    //let loser = 'n/a';
+    
 
-    //for loop
+    //loop iterates through the 5 rounds
     for (i = 1; i <= 5; i++) {
         //prints round
         console.log(`round ${i}`);
 
         let userInput = prompt("enter rock, paper or scissors");
         userInput = userInput.toLowerCase();
+        
 
         playRound(computerPlay(), userInput);
         //prints user and computers choice
@@ -146,15 +148,16 @@ function game() {
         }*/
     }
     //final message
+    console.log('<--- FINAL RESULTS --->')
     if (playerWin > computerWin)
-        console.log(`congrats player won! player won: ${playerWin}, computer won: ${computerWin}. There were ${ties} ties`)
+        console.log(`congrats player won! \nplayer won: ${playerWin} \ncomputer won: ${computerWin} \nThere were ${ties} ties`)
 
     else if (computerWin > playerWin)
-        console.log(`computer won! player won: ${playerWin}, computer won: ${computerWin}. There were ${ties} ties`)
+        console.log(`computer won! \nplayer won: ${playerWin} \ncomputer won: ${computerWin} \nThere were ${ties} ties`)
 
 
     else if (computerWin == playerWin)
-        console.log(`computer and player tied! player won: ${playerWin}, computer won: ${computerWin}. There were ${ties} ties`)
+        console.log(`computer and player tied! \nplayer won: ${playerWin} \ncomputer won: ${computerWin} \nThere were ${ties} ties`)
 
 
 
