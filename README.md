@@ -1,1 +1,1 @@
-Rock, Paper, Scissor game played in chrome console. Plays 5 rounds and declares a winner! 
+Interactive Rock Paper Scissors game played on a web browser by a user and computer. It tracks score and displays the winner each round using by manipulating the DOM
