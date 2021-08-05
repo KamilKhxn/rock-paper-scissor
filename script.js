@@ -1,133 +1,85 @@
-//attributes
-let playerWin = 0;
-let computerWin = 0;
-let ties = 0;
-let computerSelection = 'daddy';
-let winner = 'n/a';
+let userScore = 0;
+let computerScore = 0;
+//dom variables (_span, _div) 
+const userScore_Span = document.getElementById('user-score');
+const computerScore_Span = document.getElementById('computer-score');
+//const scoreBoard_div = document.querySelector('.score-board');
+const result_p = document.querySelector('.result > p');
+const rock_div = document.querySelector('.choice')
+//document.getElementById('r');
+const paper_div = document.getElementById('p');
+const scissors_div = document.getElementById('s');
 
-//randomizes computer's options between rock, paper, scissors
-function computerPlay() {
-    let rand = Math.floor(Math.random() * 3) + 1;
-    if (rand == 1) {
-        computerSelection = 'rock';
+function main(){
+    rock_div.addEventListener('click', () => game('r'));    
+    paper_div.addEventListener('click', () => game('p'));   
+    scissors_div.addEventListener('click', () =>game('s'));
+}
+
+function game(userChoice){
+    const computerChoice = getComputerChoice();
+    switch(userChoice + computerChoice){
+        case "rs":
+        case "pr":
+        case 'sp':
+            win(userChoice, computerChoice);
+            break;
+
+        case 'rp':
+        case 'ps':
+        case 'sr':
+            lose(userChoice, computerChoice);
+            break;
+
+         case 'rr':
+         case 'pp':
+         case 'ss':
+             draw(userChoice, computerChoice);
+             break;
     }
-    else if (rand == 2) {
-        computerSelection = 'paper';
-    }
-    else if (rand == 3) {
-        computerSelection = 'scissors';
-    }
-    else {
-        computerSelection = 'invalid number';
-    }
-    return computerSelection;
+}
 
-}// end of computerPlay()
+function getComputerChoice(){
+    const choices = ['r', 'p', 's'];
+    const randomNumber= Math.floor(Math.random() * 3);
+    return choices[randomNumber];
+}
 
-function playRound(computerSelection, playerSelection) {
+function convertToWord(letter){
+    if (letter === 'r') return 'Rock';
+    if (letter === 'p') return 'Paper';
+    return 'Scissors';
+}
+function win(userChoice, computerChoice){
+    const smallUserWord = 'user'.fontsize(3).sub();
+    const smallCompWord = 'comp'.fontsize(3).sub();
+    const userChoice_div = document.getElementById(userChoice);  
+    userScore++;
+    userScore_Span.innerHTML = userScore;
+    //computerScore_Span.innerHTML = computerScore;
+    result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} beats ${convertToWord(computerChoice)}${smallCompWord}. You win!`; 
+    userChoice_div.classList.add('green-glow');
+    setTimeout(() => userChoice_div.classList.remove('green-glow'), 400);
+}
 
+function lose(userChoice, computerChoice){
+    const smallUserWord = 'user'.fontsize(3).sub();
+    const smallCompWord = 'comp'.fontsize(3).sub();
+    const userChoice_div = document.getElementById(userChoice);  
+    computerScore++;
+    //userScore_Span.innerHTML = userScore;
+    computerScore_Span.innerHTML = computerScore;
+    result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} loses to ${convertToWord(computerChoice)}${smallCompWord}. You lost...`; 
+    userChoice_div.classList.add('red-glow');
+    setTimeout(() =>userChoice_div.classList.remove('red-glow'), 500);
+ }
+function draw(userChoice, computerChoice){
+    const smallUserWord = 'user'.fontsize(3).sub();
+    const smallCompWord = 'comp'.fontsize(3).sub();
+    const userChoice_div = document.getElementById(userChoice);  
+    result_p.innerHTML = `${convertToWord(userChoice)}${smallUserWord} equals ${convertToWord(computerChoice)}${smallCompWord}. It's a draw.`; 
+    userChoice_div.classList.add('grey-glow');
+    setTimeout(() => userChoice_div.classList.remove('grey-glow'), 500);
+}
 
-    //player wins statements
-    if (playerSelection == 'rock' && computerSelection == 'scissors') {
-        playerWin++;
-        winner = 'player'
-        return winner
-    }
-
-    else if (playerSelection == 'paper' && computerSelection == 'rock') {
-        playerWin++;
-        winner = 'player'
-        return winner
-
-    }
-
-    else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-        playerWin++;
-        winner = 'player'
-        return winner
-    }
-
-    //computer wins statements
-    else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-        computerWin++;
-        winner = 'computer'
-        return winner
-    }
-
-
-    if (playerSelection == 'rock' && computerSelection == 'paper') {
-        winner = 'computer'
-        computerWin++;
-        return winner
-
-    }
-    if (playerSelection == 'paper' && computerSelection == 'scissors') {
-        computerWin++;
-        winner = 'computer'
-        return winner
-
-
-    }
-
-    // tie between player and computer
-    else if (playerSelection == 'rock' && computerSelection == 'rock') {
-        ties++;
-        winner = 'tie game'
-        return winner
-
-    }
-
-    if (playerSelection == 'paper' && computerSelection == 'paper') {
-        ties++;
-        winner = 'tie game'
-        return winner
-
-    }
-
-    if (playerSelection == 'scissors' && computerSelection == 'scissors') {
-        ties++;
-        winner = 'tie game'
-        return winner
-
-
-    }
-
-
-}// end of playRound()
-function game() {
-    //play 5 rounds of the game
-
-
-    //loop iterates through round 1 to 5
-    for (i = 1; i <= 5; i++) {
-        //prints round #
-        console.log(`round ${i}`);
-        //prompts user and changes input to lowercase
-        let userInput = prompt("enter rock, paper or scissors");
-        userInput = userInput.toLowerCase();
-
-        playRound(computerPlay(), userInput);
-        //prints user and computers choice
-        console.log(`user chose: ${userInput}, computer chose: ${computerSelection}`)
-        // prints winner
-        console.log(`${winner} won round ${i}`)
-
-    }//end of for loop
-
-    //final message
-    console.log('<--- FINAL RESULTS --->')
-    if (playerWin > computerWin)
-        console.log(`congrats player won! \nplayer won: ${playerWin} \ncomputer won: ${computerWin} \nThere were ${ties} ties`)
-
-    else if (computerWin > playerWin)
-        console.log(`computer won! \nplayer won: ${playerWin} \ncomputer won: ${computerWin} \nThere were ${ties} ties`)
-
-
-    else if (computerWin == playerWin)
-        console.log(`computer and player tied! \nplayer won: ${playerWin} \ncomputer won: ${computerWin} \nThere were ${ties} ties`)
-
-}// end of game()
-
-
-
-game();
+main();
