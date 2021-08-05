@@ -1,1 +1,1 @@
-Interactive Rock Paper Scissors game played on a web browser by a user and computer. It tracks score and displays the winner each round using by manipulating the DOM
+This is a interactive Rock Paper Scissors game played by a user and a computer on a web browser. It tracks score and displays the winner each round. JavaScript and DOM manipulation is used to push the results to the browser.
