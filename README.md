@@ -1,7 +1,7 @@
 
 # Rock Paper Scissors 
 
-Rock Paper Scisors is my first app, hosted on GitHub pages right [here](https://kamilkhxn.github.io/rock-paper-scissor/)
+Rock Paper Scisors is my first app. Check out a live demo [here](https://kamilkhxn.github.io/rock-paper-scissor/)
 
 ## About
 
